@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="150.0" styleClass="side-menu" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easymis.controllers.SideMenuViewController">
+   <children>
+      <Pane prefHeight="133.0" prefWidth="150.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Separator opacity="0.5" prefWidth="200.0" />
+      <JFXButton fx:id="btnDashboard" onAction="#openDashboard" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Dashboard">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnEventBooking" layoutX="10.0" layoutY="146.0" onAction="#openEventBooking" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Event Booking">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnExpenses" layoutX="10.0" layoutY="196.0" onAction="#openExpenses" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Expenses">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnReports" layoutX="10.0" layoutY="246.0" onAction="#openReports" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Reports">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnEmployees" layoutX="10.0" layoutY="296.0" onAction="#openEmployees" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Employees">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnInventory" layoutX="10.0" layoutY="346.0" onAction="#openInventory" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Inventory">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="DATABASE" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnSettings" layoutX="10.0" layoutY="396.0" onAction="#openSettings" prefHeight="47.0" prefWidth="149.0" styleClass="side-menu-button" stylesheets="@styles.css" text="Settings">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="20" wrappingWidth="30.0" />
+         </graphic>
+      </JFXButton>
+   </children>
+</VBox>
