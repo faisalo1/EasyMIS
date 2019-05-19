@@ -6,6 +6,7 @@
 package easymis.models.repository;
 
 import easymis.models.entity.EventDetails;
+import easymis.models.entity.TransactionStatus;
 
 /**
  *
@@ -23,7 +24,7 @@ private static EventRepository uniqueInstance = new EventRepository();
         return uniqueInstance;
     }
     
-    public void create(EventDetails eventDetails){
-        persist(eventDetails);
+    public TransactionStatus create(EventDetails eventDetails){
+        return persist(eventDetails);
     }
 }

@@ -8,8 +8,11 @@ package easymis.controllers;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import easymis.models.entity.EventDetails;
+import easymis.models.entity.TransactionStatus;
+import easymis.models.entity.enumeration.BookingStatus;
 import easymis.models.entity.enumeration.BookingType;
 import easymis.models.repository.EventRepository;
+import easymis.utils.AlertHelper;
 import java.net.URL;
 import java.sql.Date;
 import java.time.Instant;
@@ -114,8 +117,13 @@ public class EventBookingViewController implements Initializable {
         if (event != null) {
             if (validateEventDetails()) {
                 EventDetails eventDetail = getEventDetails(BookingType.BOOKED);
+                TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
+                if(status.isSuccess()){
+                    AlertHelper.showSuccessMessage("Event Creation Completed Successfully");
+                }else{
+                    AlertHelper.showErrorMessage("Event Creation Failed"+status.getErrorMessage());
+                }
             }
-
         }
     }
 
@@ -137,8 +145,8 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setIshaSelected(ishaHall.isSelected());
         eventDetails.setNicaSelected(niceHall.isSelected());
         eventDetails.setAcSelected(acRequired.isSelected());
-        eventDetails.setAcAddSelected(additionalAC.isSelected());
-        eventDetails.setBookingType(bookingType);
+        eventDetails.setAdditionalACSelected(additionalAC.isSelected());
+        eventDetails.setBookingStatus(BookingStatus.BOOKED);
         eventDetails.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
         return eventDetails;
     }
@@ -167,8 +175,7 @@ public class EventBookingViewController implements Initializable {
             if(stringMessage.charAt(stringMessage.length()-1)== ','){
                 
             }
-            Alert alert = new Alert(AlertType.ERROR, "Mandatory Fields Missing: "+stringMessage, ButtonType.OK);
-            alert.show();
+            AlertHelper.showErrorMessage(stringMessage);
         }
         return isValid;
     }

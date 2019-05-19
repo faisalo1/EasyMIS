@@ -25,7 +25,7 @@ public class EasyMIS extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
         stage.show();
     }
 
