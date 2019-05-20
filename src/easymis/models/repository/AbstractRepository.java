@@ -2,9 +2,13 @@ package easymis.models.repository;
 
 import easymis.models.entity.DomainObject;
 import easymis.models.entity.TransactionStatus;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import org.eclipse.persistence.jpa.rs.QueryParameters;
 
 /**
  *
@@ -29,14 +33,33 @@ public class AbstractRepository {
         }
         return status;
     }
-//
-//    public DomainObject retrieve(DomainObject domainObject, String queryString) {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("company-provider");
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        Query q1 = em.createNativeQuery(queryString", domainObject.class);
-//        return null;
-//    }
+
+    public <T extends DomainObject> List<T> retrieve(String queryString, List<QueryParams> params, Class<T> responseObject) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("company-provider");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<T> resultList = null;
+        try {
+            Query query = em.createQuery(queryString);
+            if(params != null && !params.isEmpty()){
+                params.stream().forEach((queryParam) -> {
+                    if(queryParam.getParamDateValue() != null){
+                        query.setParameter(queryParam.getParamName(), queryParam.getParamDateValue(), TemporalType.DATE);
+                    }else{
+                        query.setParameter(queryParam.getParamName(), queryParam.getParamValue());
+                    }
+                });
+            }
+            resultList = query.getResultList();
+            if(resultList != null && !resultList.isEmpty())
+                return resultList;
+        } catch (Exception e) {
+           
+        } finally {
+            em.close();
+        }
+        return resultList;
+    }
 
     private TransactionStatus fillTransactionStatus(Exception exception) {
         TransactionStatus status = new TransactionStatus();

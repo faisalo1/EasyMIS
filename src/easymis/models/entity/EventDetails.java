@@ -100,7 +100,7 @@ public class EventDetails extends DomainObject {
                 @ConversionValue(objectValue = "BOOKED", dataValue = "BOOKED"),
                 @ConversionValue(objectValue = "CANCELLED", dataValue = "CANCELLED")}
     )
-    @Convert("bookingTypeConverter")
+    @Convert("bookingStatusConverter")
     @Column(name = "BOOKING_STATUS")
     private BookingStatus bookingStatus;
 

@@ -7,6 +7,8 @@ package easymis.models.repository;
 
 import easymis.models.entity.EventDetails;
 import easymis.models.entity.TransactionStatus;
+import easymis.utils.QueryConstants;
+import java.util.List;
 
 /**
  *
@@ -26,5 +28,9 @@ private static EventRepository uniqueInstance = new EventRepository();
     
     public TransactionStatus create(EventDetails eventDetails){
         return persist(eventDetails);
+    }
+    
+    public List<EventDetails> fetchAllEvents(){
+        return retrieve(QueryConstants.FETCH_ALL_EVENTS, null, EventDetails.class);
     }
 }

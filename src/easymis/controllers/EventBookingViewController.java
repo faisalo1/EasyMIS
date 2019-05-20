@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -28,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import org.eclipse.persistence.internal.helper.StringHelper;
 
 /**
@@ -71,6 +73,10 @@ public class EventBookingViewController implements Initializable {
     private JFXDatePicker eventDate;
     @FXML
     private Label totalAmount;
+    @FXML
+    private Tab panelTabAddNew;
+    @FXML
+    private Tab panelTabList;
 
     /**
      * Initializes the controller class.
@@ -178,6 +184,19 @@ public class EventBookingViewController implements Initializable {
             AlertHelper.showErrorMessage(stringMessage);
         }
         return isValid;
+    }
+
+    @FXML
+    private void onAddNewTabSelection(Event event) {
+        
+    }
+
+    @FXML
+    private void onListTabSelection(Event event) {
+        if(event != null){
+            List <EventDetails> eventDetails = EventRepository.getUniqueInstance().fetchAllEvents();
+            int i = 0;
+        }
     }
 
 }

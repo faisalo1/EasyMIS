@@ -24,7 +24,7 @@
                   <Pane prefHeight="69.0" prefWidth="1179.0" styleClass="blue-gradient" />
                   <JFXTabPane layoutY="32.0" prefHeight="600.0" prefWidth="1180.0">
                      <tabs>
-                        <Tab text="Add New">
+                        <Tab fx:id="panelTabAddNew" onSelectionChanged="#onAddNewTabSelection" text="Add New">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -128,7 +128,7 @@
                               </AnchorPane>
                           </content>
                         </Tab>
-                        <Tab text="List">
+                        <Tab fx:id="panelTabList" onSelectionChanged="#onListTabSelection" text="List">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1221.0">
                                  <children>
