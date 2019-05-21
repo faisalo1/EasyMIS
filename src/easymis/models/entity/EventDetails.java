@@ -3,7 +3,6 @@ package easymis.models.entity;
 import easymis.models.entity.enumeration.BookingStatus;
 import easymis.models.entity.enumeration.BookingType;
 import easymis.models.entity.enumeration.EventCategory;
-import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;

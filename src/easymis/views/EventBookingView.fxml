@@ -28,44 +28,44 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <JFXTextField fx:id="firstName" layoutX="108.0" layoutY="79.0" prefHeight="25.0" prefWidth="240.0" promptText="First Name" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="75.0">
+                                    <JFXTextField fx:id="firstName" layoutX="108.0" layoutY="79.0" prefHeight="25.0" prefWidth="240.0" promptText="First Name" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="70.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="lastName" layoutX="493.0" layoutY="78.0" prefHeight="25.0" prefWidth="240.0" promptText="Last Name" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="75.0">
+                                    <JFXTextField fx:id="lastName" layoutX="493.0" layoutY="78.0" prefHeight="25.0" prefWidth="240.0" promptText="Last Name" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="70.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="addressLine1" layoutX="117.0" layoutY="153.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="150.0">
+                                    <JFXTextField fx:id="addressLine1" layoutX="117.0" layoutY="153.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="addressLine2" layoutX="502.0" layoutY="152.0" prefHeight="25.0" prefWidth="243.0" promptText="Address Line 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                                    <JFXTextField fx:id="addressLine2" layoutX="502.0" layoutY="152.0" prefHeight="25.0" prefWidth="243.0" promptText="Address Line 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="120.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="addressLine3" layoutX="107.0" layoutY="217.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 3" AnchorPane.leftAnchor="110.0">
+                                    <JFXTextField fx:id="addressLine3" layoutX="107.0" layoutY="217.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 3" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="170.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="district" layoutX="492.0" layoutY="216.0" prefHeight="25.0" prefWidth="240.0" promptText="District" AnchorPane.leftAnchor="500.0">
+                                    <JFXTextField fx:id="district" layoutX="492.0" layoutY="216.0" prefHeight="25.0" prefWidth="240.0" promptText="District" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="170.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="state" layoutX="116.0" layoutY="291.0" prefHeight="25.0" prefWidth="240.0" promptText="State" AnchorPane.leftAnchor="110.0">
+                                    <JFXTextField fx:id="state" layoutX="116.0" layoutY="291.0" prefHeight="25.0" prefWidth="240.0" promptText="State" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="220.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="pinCode" layoutX="501.0" layoutY="290.0" prefHeight="25.0" prefWidth="240.0" promptText="Pin Code">
+                                    <JFXTextField fx:id="pinCode" layoutX="501.0" layoutY="290.0" prefHeight="25.0" prefWidth="240.0" promptText="Pin Code" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="220.0">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
                                     <CheckBox fx:id="wedding" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="120.0" layoutY="384.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onWeddingSelection" text="Wedding" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="380.0">
@@ -103,7 +103,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <JFXDatePicker fx:id="eventDate" layoutX="110.0" layoutY="28.0" pickOnBounds="false" promptText="Event Date">
+                                    <JFXDatePicker fx:id="eventDate" layoutX="110.0" layoutY="28.0" pickOnBounds="false" promptText="Event Date" AnchorPane.topAnchor="30.0">
                                        <effect>
                                           <Glow />
                                        </effect>
@@ -122,8 +122,23 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
+                                          <Label fx:id="lblEventCategory" alignment="CENTER" layoutX="42.0" layoutY="26.0" prefHeight="17.0" prefWidth="124.0" text="Diamond">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </Pane>
+                                    <JFXTextField fx:id="mobileNumber1" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="mobileNumber2" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
                                  </children>
                               </AnchorPane>
                           </content>
@@ -132,14 +147,15 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1221.0">
                                  <children>
-                                    <TableView prefHeight="563.0" prefWidth="1178.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+                                    <TableView fx:id="eventTable" prefHeight="563.0" prefWidth="533.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                                       <columns>
-                                        <TableColumn prefWidth="150.0" text="Event Date" />
-                                        <TableColumn prefWidth="250.0" text="Full Name" />
-                                          <TableColumn prefWidth="200.0" text="Address" />
-                                          <TableColumn prefWidth="150.0" text="Event Type" />
-                                          <TableColumn prefWidth="205.666748046875" text="Booking Type" />
-                                          <TableColumn prefWidth="150.0" text="Booking Date" />
+                                        <TableColumn fx:id="col_EventDate" prefWidth="150.0" text="Event Date" />
+                                        <TableColumn fx:id="col_fullName" prefWidth="126.0" text="Full Name" />
+                                          <TableColumn fx:id="col_BookingStatus" prefWidth="146.0" text="Booking Status" />
+                                          <TableColumn fx:id="col_eventType" prefWidth="305.0" text="Event Type" />
+                                          <TableColumn fx:id="col_bookingType" prefWidth="149.0" text="Booking Type" />
+                                          <TableColumn fx:id="col_BookingDate" prefWidth="138.0" text="Booking Date" />
+                                          <TableColumn fx:id="col_EventCategory" prefWidth="141.0" text="Event Category" />
                                       </columns>
                                     </TableView>
                                  </children>

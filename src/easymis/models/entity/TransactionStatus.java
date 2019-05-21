@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package easymis.models.entity;
+
+import easymis.utils.ValidationError;
+import java.util.List;
 
 /**
  *
@@ -15,6 +13,8 @@ public class TransactionStatus {
     private String errorCode;
     
     private String errorMessage;
+    
+    private List<ValidationError> validationErrors;
 
     public boolean isSuccess() {
         return success;
@@ -38,6 +38,14 @@ public class TransactionStatus {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public List<ValidationError> getValidationErrors() {
+        return validationErrors;
+    }
+
+    public void setValidationErrors(List<ValidationError> validationErrors) {
+        this.validationErrors = validationErrors;
     }
     
     

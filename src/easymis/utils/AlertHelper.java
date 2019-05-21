@@ -1,5 +1,6 @@
 package easymis.utils;
 
+import easymis.models.entity.TransactionStatus;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -16,5 +17,9 @@ public class AlertHelper {
     public static void showSuccessMessage(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
             alert.show();
+    }
+    
+    public static void showMessage(TransactionStatus status){
+        
     }
 }

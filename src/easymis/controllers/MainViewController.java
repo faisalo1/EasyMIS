@@ -58,7 +58,7 @@ public class MainViewController implements Initializable {
         try {
             VBox menu = FXMLLoader.load(getClass().getResource(Constants.SIDE_MENU_VIEW));
             drawer.setSidePane(menu);
-            drawer.setMinWidth(150);
+            drawer.setMinWidth(130);
             HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
             transition.setRate(-1);
             hamburger.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {

@@ -1,36 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package easymis.controllers;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import easymis.controllers.assembler.EventDetailsAssembler;
+import easymis.models.entity.EventCategoryDetail;
 import easymis.models.entity.EventDetails;
 import easymis.models.entity.TransactionStatus;
 import easymis.models.entity.enumeration.BookingStatus;
 import easymis.models.entity.enumeration.BookingType;
+import easymis.models.entity.enumeration.EventCategory;
+import easymis.models.entity.utils.EventCategoryUtils;
 import easymis.models.repository.EventRepository;
 import easymis.utils.AlertHelper;
+import easymis.views.viewobjects.EventDetailsViewObject;
 import java.net.URL;
 import java.sql.Date;
-import java.time.Instant;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import org.eclipse.persistence.internal.helper.StringHelper;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -77,13 +76,43 @@ public class EventBookingViewController implements Initializable {
     private Tab panelTabAddNew;
     @FXML
     private Tab panelTabList;
+    @FXML
+    private TableColumn<EventDetailsViewObject, String> col_EventDate;
+    @FXML
+    private TableColumn<EventDetailsViewObject, String> col_fullName;
+    @FXML
+    private TableColumn<EventDetailsViewObject, BookingStatus> col_BookingStatus;
+    @FXML
+    private TableColumn<EventDetailsViewObject, String> col_eventType;
+    @FXML
+    private TableColumn<EventDetailsViewObject, BookingType> col_bookingType;
+    @FXML
+    private TableColumn<EventDetailsViewObject, Date> col_BookingDate;
+    @FXML
+    private TableView<EventDetailsViewObject> eventTable;
+    
+    ObservableList<EventDetailsViewObject> observableList = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<EventDetailsViewObject, EventCategory> col_EventCategory;
+    @FXML
+    private Label lblEventCategory;
+    @FXML
+    private JFXTextField mobileNumber1;
+    @FXML
+    private JFXTextField mobileNumber2;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        col_EventDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+        col_fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        col_BookingStatus.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
+        col_eventType.setCellValueFactory(new PropertyValueFactory<>("eventType"));
+        col_bookingType.setCellValueFactory(new PropertyValueFactory<>("bookingType"));
+        col_BookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
+        col_EventCategory.setCellValueFactory(new PropertyValueFactory<>("eventCategory"));
     }
 
     @FXML
@@ -121,14 +150,10 @@ public class EventBookingViewController implements Initializable {
     @FXML
     private void bookEvent(ActionEvent event) {
         if (event != null) {
-            if (validateEventDetails()) {
+            if (validateMandatory()) {
                 EventDetails eventDetail = getEventDetails(BookingType.BOOKED);
                 TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
-                if(status.isSuccess()){
-                    AlertHelper.showSuccessMessage("Event Creation Completed Successfully");
-                }else{
-                    AlertHelper.showErrorMessage("Event Creation Failed"+status.getErrorMessage());
-                }
+                AlertHelper.showMessage(status);
             }
         }
     }
@@ -153,13 +178,14 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setAcSelected(acRequired.isSelected());
         eventDetails.setAdditionalACSelected(additionalAC.isSelected());
         eventDetails.setBookingStatus(BookingStatus.BOOKED);
+        eventDetails.setEventCategory(EventCategoryUtils.getEventCategory(buildEventCategoryDetail()));
         eventDetails.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
         return eventDetails;
     }
 
-    private boolean validateEventDetails() {
+    private boolean validateMandatory() {
         boolean isValid = true;
-        StringBuilder errorMessage = new StringBuilder();
+        StringBuilder errorMessage = new StringBuilder("Following fileds missing: ");
         if (eventDate.getValue() == null) {
             errorMessage.append(" Event Date,");
             isValid = false;
@@ -178,9 +204,6 @@ public class EventBookingViewController implements Initializable {
         }
         if (!isValid) {
             String stringMessage = errorMessage.toString();
-            if(stringMessage.charAt(stringMessage.length()-1)== ','){
-                
-            }
             AlertHelper.showErrorMessage(stringMessage);
         }
         return isValid;
@@ -195,8 +218,24 @@ public class EventBookingViewController implements Initializable {
     private void onListTabSelection(Event event) {
         if(event != null){
             List <EventDetails> eventDetails = EventRepository.getUniqueInstance().fetchAllEvents();
-            int i = 0;
+            EventDetailsAssembler assembler = new EventDetailsAssembler();
+            observableList.clear();
+            eventDetails.stream().forEach((eventDetail) -> {
+                observableList.add(assembler.toEventDetailsViewObject(eventDetail));
+            });
+            eventTable.setItems(observableList);
         }
     }
 
+    private EventCategoryDetail buildEventCategoryDetail() {
+        EventCategoryDetail eventCategoryDetail =new EventCategoryDetail();
+        eventCategoryDetail.setAcSelected(acRequired.isSelected());
+        eventCategoryDetail.setAdditionalACSelected(additionalAC.isSelected());
+        eventCategoryDetail.setIshaSelected(ishaHall.isSelected());
+        eventCategoryDetail.setMehandiSelected(mehandi.isSelected());
+        eventCategoryDetail.setNicaSelected(niceHall.isSelected());
+        eventCategoryDetail.setReceptionSelected(reception.isSelected());
+        eventCategoryDetail.setWeddingSelected(wedding.isSelected());
+        return eventCategoryDetail;
+    }
 }
