@@ -103,13 +103,13 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <JFXDatePicker fx:id="eventDate" layoutX="110.0" layoutY="28.0" pickOnBounds="false" promptText="Event Date" AnchorPane.topAnchor="30.0">
+                                    <JFXDatePicker fx:id="eventDate" defaultColor="#3a84c3" layoutX="110.0" layoutY="28.0" pickOnBounds="false" promptText="Event Date" AnchorPane.topAnchor="30.0">
                                        <effect>
                                           <Glow />
                                        </effect>
                                     </JFXDatePicker>
-                                    <JFXButton layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" styleClass="block-button" text="Block" />
-                                    <JFXButton layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" styleClass="book-button" text="Book" />
+                                    <JFXButton layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Block" />
+                                    <JFXButton layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="book-button" text="Book" />
                                     <Pane layoutX="878.0" layoutY="106.0" prefHeight="212.0" prefWidth="204.0" style="-fx-border-color: blue; -fx-border-width: 3;">
                                        <children>
                                           <Label fx:id="totalAmount" layoutX="24.0" layoutY="99.0" text="200000">
@@ -139,6 +139,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
+                                    <JFXButton layoutX="820.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
                                  </children>
                               </AnchorPane>
                           </content>
