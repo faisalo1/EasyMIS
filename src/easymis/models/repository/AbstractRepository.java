@@ -8,7 +8,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
-import org.eclipse.persistence.jpa.rs.QueryParameters;
 
 /**
  *
@@ -54,7 +53,7 @@ public class AbstractRepository {
             if(resultList != null && !resultList.isEmpty())
                 return resultList;
         } catch (Exception e) {
-           
+           e.printStackTrace();
         } finally {
             em.close();
         }
@@ -65,7 +64,7 @@ public class AbstractRepository {
         TransactionStatus status = new TransactionStatus();
         if (exception != null) {
             status.setSuccess(false);
-            status.setErrorMessage(exception.getLocalizedMessage());
+            status.setMessage(exception.getLocalizedMessage());
         } else {
             status.setSuccess(true);
         }

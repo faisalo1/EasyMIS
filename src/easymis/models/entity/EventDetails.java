@@ -89,10 +89,10 @@ public class EventDetails extends DomainObject {
     private EventCategory eventCategory;
 
     @Column(name = "MOBILE_NUMBER_1")
-    private int mobileNumber1;
+    private String mobileNumber1;
 
     @Column(name = "MOBILE_NUMBER_2")
-    private int mobileNumber2;
+    private String mobileNumber2;
 
     @ObjectTypeConverter(
             name = "bookingStatusConverter", objectType = BookingStatus.class, dataType = String.class, conversionValues = {
@@ -254,19 +254,19 @@ public class EventDetails extends DomainObject {
         this.eventCategory = eventCategory;
     }
 
-    public int getMobileNumber1() {
+    public String getMobileNumber1() {
         return mobileNumber1;
     }
 
-    public void setMobileNumber1(int mobileNumber1) {
+    public void setMobileNumber1(String mobileNumber1) {
         this.mobileNumber1 = mobileNumber1;
     }
 
-    public int getMobileNumber2() {
+    public String getMobileNumber2() {
         return mobileNumber2;
     }
 
-    public void setMobileNumber2(int mobileNumber2) {
+    public void setMobileNumber2(String mobileNumber2) {
         this.mobileNumber2 = mobileNumber2;
     }
 

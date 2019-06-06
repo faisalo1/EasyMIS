@@ -3,8 +3,8 @@ package easymis.controllers;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import easymis.controllers.assembler.EventDetailsAssembler;
-import easymis.models.entity.EventCategoryDetail;
 import easymis.models.entity.EventDetails;
+import easymis.models.entity.EventTypeDetail;
 import easymis.models.entity.TransactionStatus;
 import easymis.models.entity.enumeration.BookingStatus;
 import easymis.models.entity.enumeration.BookingType;
@@ -12,10 +12,10 @@ import easymis.models.entity.enumeration.EventCategory;
 import easymis.models.entity.utils.EventCategoryUtils;
 import easymis.models.repository.EventRepository;
 import easymis.utils.AlertHelper;
+import easymis.utils.DateHelper;
 import easymis.views.viewobjects.EventDetailsViewObject;
 import java.net.URL;
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -150,11 +150,16 @@ public class EventBookingViewController implements Initializable {
     @FXML
     private void bookEvent(ActionEvent event) {
         if (event != null) {
-            if (validateMandatory()) {
-                EventDetails eventDetail = getEventDetails(BookingType.BOOKED);
-                TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
-                AlertHelper.showMessage(status);
-            }
+            manageEvent(BookingType.BOOKED);
+        }
+    }
+
+    public void manageEvent(BookingType bookingType) {
+        if (validateMandatory()) {
+            EventDetails eventDetail = getEventDetails(bookingType);
+            TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
+            AlertHelper.showMessage(status);
+            lblEventCategory.setText(eventDetail.getEventCategory().toString());
         }
     }
 
@@ -169,7 +174,8 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setAddressLine3(addressLine3.getText());
         eventDetails.setDistrict(district.getText());
         eventDetails.setState(state.getText());
-        eventDetails.setPinCode(Integer.valueOf(pinCode.getText()));
+        if(pinCode.getText() != null && !"".equals(pinCode.getText()))
+            eventDetails.setPinCode(Integer.valueOf(pinCode.getText()));
         eventDetails.setWeddingSelected(wedding.isSelected());
         eventDetails.setMehandiSelected(mehandi.isSelected());
         eventDetails.setReceptionSelected(reception.isSelected());
@@ -179,7 +185,7 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setAdditionalACSelected(additionalAC.isSelected());
         eventDetails.setBookingStatus(BookingStatus.BOOKED);
         eventDetails.setEventCategory(EventCategoryUtils.getEventCategory(buildEventCategoryDetail()));
-        eventDetails.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+        eventDetails.setCreatedDate(DateHelper.getToday());
         return eventDetails;
     }
 
@@ -196,6 +202,10 @@ public class EventBookingViewController implements Initializable {
         }
         if (addressLine1.getText() == null || "".equals(addressLine1.getText())) {
             errorMessage.append(" Address Line 1,");
+            isValid = false;
+        }
+        if(mobileNumber1.getText() == null|| "".equals(addressLine1.getText())){
+            errorMessage.append(" Mobile Number,");
             isValid = false;
         }
         if (!wedding.isSelected() && !reception.isSelected() && !niceHall.isSelected() && !ishaHall.isSelected()) {
@@ -227,8 +237,8 @@ public class EventBookingViewController implements Initializable {
         }
     }
 
-    private EventCategoryDetail buildEventCategoryDetail() {
-        EventCategoryDetail eventCategoryDetail =new EventCategoryDetail();
+    private EventTypeDetail buildEventCategoryDetail() {
+        EventTypeDetail eventCategoryDetail =new EventTypeDetail();
         eventCategoryDetail.setAcSelected(acRequired.isSelected());
         eventCategoryDetail.setAdditionalACSelected(additionalAC.isSelected());
         eventCategoryDetail.setIshaSelected(ishaHall.isSelected());

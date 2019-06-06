@@ -12,7 +12,7 @@ public class TransactionStatus {
     
     private String errorCode;
     
-    private String errorMessage;
+    private String message;
     
     private List<ValidationError> validationErrors;
 
@@ -32,12 +32,12 @@ public class TransactionStatus {
         this.errorCode = errorCode;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public List<ValidationError> getValidationErrors() {

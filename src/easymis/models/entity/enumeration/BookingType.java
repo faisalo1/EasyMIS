@@ -6,5 +6,5 @@ package easymis.models.entity.enumeration;
  */
 public enum BookingType {
     
-    BOOKED, BLOCKED;
+    BOOKED, BLOCKED, CANCELLED;
 }

@@ -4,7 +4,7 @@ package easymis.models.entity;
  *
  * @author RashidKP
  */
- public class EventCategoryDetail{
+ public class EventTypeDetail{
         
     private boolean weddingSelected;
 
