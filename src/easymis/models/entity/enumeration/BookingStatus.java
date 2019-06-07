@@ -5,5 +5,5 @@ package easymis.models.entity.enumeration;
  * @author RashidKP
  */
 public enum BookingStatus {
-    BOOKED, WITHDRAWN, CANCELLED, BLOCKED;
+    BOOKED,BOOKING_CANCELLED, BLOCKED,BLOCKING_CANCELLED;
 }
