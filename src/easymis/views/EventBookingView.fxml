@@ -93,7 +93,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <CheckBox fx:id="acRequired" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="500.0" layoutY="509.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onAcRequiredSelection" text="A/C Required" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="509.0">
+                                    <CheckBox fx:id="acRequired" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="500.0" layoutY="499.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onAcRequiredSelection" text="A/C Required" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="499.0">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -103,12 +103,12 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <CheckBox fx:id="niceHall" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="529.0" layoutY="420.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onNicaHallSelection" text="Nica Hall - A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="420.0">
+                                    <CheckBox fx:id="niceHall" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="500.0" layoutY="420.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onNicaHallSelection" text="Nica Hall - A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="420.0">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <CheckBox fx:id="additionalAC" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="529.0" layoutY="460.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onAdditionalAcSelection" text="Additional A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="460.0">
+                                    <CheckBox fx:id="additionalAC" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="500.0" layoutY="460.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#onAdditionalAcSelection" text="Additional A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="460.0">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
