@@ -22,7 +22,7 @@ public class EventDetailsAssembler {
         }
         String eventType = resolveEventType(eventDetails);
         EventDetailsViewObject eventDetailsViewObject = new EventDetailsViewObject(eventDetails.getEventDate(), fullName.toString(), eventDetails.getBookingStatus(), 
-                eventType, eventDetails.getBookingType(), eventDetails.getCreatedDate(), eventDetails.getEventCategory());
+                eventType, eventDetails.getBookingId(), eventDetails.getCreatedDate(), eventDetails.getEventCategory());
         return eventDetailsViewObject;
     }
 

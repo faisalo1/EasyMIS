@@ -19,16 +19,16 @@ import org.eclipse.persistence.annotations.ObjectTypeConverter;
  * @author RashidKP
  */
 @Entity
-@Table(name = "EMIS_EVENT_MASTER_B")
+    @Table(name = "EMIS_EVENT_MASTER_B")
 public class EventDetails extends DomainObject {
 
     
     @Id
     @GeneratedValue(generator = "sqlite")
     @TableGenerator(name = "sqlite", table = "sqlite_sequence",
-            pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "EventDetails")
-    @Column(name = "EVENT_ID")
-    private String eventId;
+            pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "BOOKING_ID", initialValue = 1000, allocationSize = 1)
+    @Column(name = "BOOKING_ID")
+    private String bookingId;
 
     @Column(name = "EVENT_DATE")
     private Date eventDate;
@@ -118,12 +118,12 @@ public class EventDetails extends DomainObject {
     @Column(name = "UPDATED_DATE")
     private Date lastUpdatedDate;
 
-    public String getEventId() {
-        return eventId;
+    public String getBookingId() {
+        return bookingId;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
     }
 
     public Date getEventDate() {
@@ -312,7 +312,7 @@ public class EventDetails extends DomainObject {
 
     @Override
     public String toString() {
-        return "Event{" + "eventId=" + eventId + ", "
+        return "Event{" + "eventId=" + bookingId + ", "
                 + "eventDate=" + eventDate + ", firstName="
                 + firstName
                 + ", lastName=" + lastName + ", addressLine1="

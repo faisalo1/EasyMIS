@@ -63,4 +63,13 @@ public class EventRepository extends AbstractRepository {
         List<EventDetails> mehandiEvents = retrieve(QueryConstants.FETCH_MEHANDI_EVENT_FOR_DATE, Collections.singletonList(param), EventDetails.class);
         return mehandiEvents != null && !mehandiEvents.isEmpty() ? mehandiEvents.get(0): null;
     }
+    
+     public EventDetails fetchExistingReceptionEventOnPreviousDate(Date eventDate) {
+        java.sql.Date nextDate = DateHelper.getPreviousDay(eventDate);
+        QueryParams param = new QueryParams();
+        param.setParamName("eventDate");
+        param.setParamDateValue(nextDate);
+        List<EventDetails> mehandiEvents = retrieve(QueryConstants.FETCH_RECEPTION_EVENT_FOR_DATE, Collections.singletonList(param), EventDetails.class);
+        return mehandiEvents != null && !mehandiEvents.isEmpty() ? mehandiEvents.get(0): null;
+    }
 }

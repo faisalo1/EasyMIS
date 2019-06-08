@@ -23,4 +23,8 @@ public class DateHelper {
     public static Date getNextDay(Date currentDate){
         return new java.sql.Date(currentDate.getTime() + 24*60*60*1000);
     }
+    
+    public static Date getPreviousDay(Date currentDate){
+        return new java.sql.Date(currentDate.getTime() - 24*60*60*1000);
+    }
     }

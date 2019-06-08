@@ -24,7 +24,26 @@
                   <Pane prefHeight="69.0" prefWidth="1179.0" styleClass="blue-gradient" />
                   <JFXTabPane layoutY="32.0" prefHeight="600.0" prefWidth="1180.0">
                      <tabs>
-                        <Tab fx:id="panelTabAddNew" onSelectionChanged="#onAddNewTabSelection" text="Add New">
+                        <Tab fx:id="panelTabList" onSelectionChanged="#onListTabSelection" text="View All Events">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1221.0">
+                                 <children>
+                                    <TableView fx:id="eventTable" prefHeight="563.0" prefWidth="533.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+                                      <columns>
+                                          <TableColumn fx:id="col_bookingId" prefWidth="149.0" text="Booking ID" />
+                                        <TableColumn fx:id="col_EventDate" prefWidth="150.0" text="Event Date" />
+                                        <TableColumn fx:id="col_fullName" prefWidth="126.0" text="Full Name" />
+                                          <TableColumn fx:id="col_BookingStatus" prefWidth="146.0" text="Booking Status" />
+                                          <TableColumn fx:id="col_eventType" prefWidth="305.0" text="Event Type" />
+                                          <TableColumn fx:id="col_BookingDate" prefWidth="138.0" text="Booking Date" />
+                                          <TableColumn fx:id="col_EventCategory" prefWidth="141.0" text="Event Category" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab fx:id="panelTabAddNew" onSelectionChanged="#onAddNewTabSelection" text="Add Event">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -68,12 +87,12 @@
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="mobileNumber1" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
+                                    <JFXTextField fx:id="mobileNumber1" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Primary Mobile Number" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="mobileNumber2" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
+                                    <JFXTextField fx:id="mobileNumber2" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Alternate Mobile Number" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -118,9 +137,9 @@
                                           <Glow />
                                        </effect>
                                     </JFXDatePicker>
-                                    <JFXButton layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Block" />
-                                    <JFXButton layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="book-button" text="Book" />
-                                    <JFXButton layoutX="820.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
+                                    <JFXButton fx:id="btnBlock" layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Block" />
+                                    <JFXButton fx:id="btnBook" layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="book-button" text="Book" />
+                                    <JFXButton fx:id="btnReset" layoutX="820.0" layoutY="489.0" onAction="#resetEventDetails" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
                                     <Pane layoutX="878.0" layoutY="106.0" prefHeight="212.0" prefWidth="204.0" style="-fx-border-color: blue; -fx-border-width: 3;">
                                        <children>
                                           <Label fx:id="totalAmount" layoutX="60.0" layoutY="99.0" text="0.00">
@@ -139,24 +158,125 @@
                               </AnchorPane>
                           </content>
                         </Tab>
-                        <Tab fx:id="panelTabList" onSelectionChanged="#onListTabSelection" text="List">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1221.0">
+                        <Tab fx:id="panelTabAddNew1" onSelectionChanged="#onAddNewTabSelection" text="Update Event">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="eventTable" prefHeight="563.0" prefWidth="533.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
-                                      <columns>
-                                        <TableColumn fx:id="col_EventDate" prefWidth="150.0" text="Event Date" />
-                                        <TableColumn fx:id="col_fullName" prefWidth="126.0" text="Full Name" />
-                                          <TableColumn fx:id="col_BookingStatus" prefWidth="146.0" text="Booking Status" />
-                                          <TableColumn fx:id="col_eventType" prefWidth="305.0" text="Event Type" />
-                                          <TableColumn fx:id="col_bookingType" prefWidth="149.0" text="Booking Type" />
-                                          <TableColumn fx:id="col_BookingDate" prefWidth="138.0" text="Booking Date" />
-                                          <TableColumn fx:id="col_EventCategory" prefWidth="141.0" text="Event Category" />
-                                      </columns>
-                                    </TableView>
+                                    <JFXTextField fx:id="updFirstName" layoutX="108.0" layoutY="79.0" prefHeight="25.0" prefWidth="240.0" promptText="First Name" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="70.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updLastName" layoutX="493.0" layoutY="78.0" prefHeight="25.0" prefWidth="240.0" promptText="Last Name" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="70.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updAddressLine1" layoutX="117.0" layoutY="153.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updAddressLine2" layoutX="502.0" layoutY="152.0" prefHeight="25.0" prefWidth="243.0" promptText="Address Line 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="120.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updAddressLine3" layoutX="107.0" layoutY="217.0" prefHeight="25.0" prefWidth="240.0" promptText="Address Line 3" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="170.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updDistrict" layoutX="492.0" layoutY="216.0" prefHeight="25.0" prefWidth="240.0" promptText="District" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="170.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updState" layoutX="116.0" layoutY="291.0" prefHeight="25.0" prefWidth="240.0" promptText="State" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="220.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updPinCode" layoutX="501.0" layoutY="290.0" prefHeight="25.0" prefWidth="240.0" promptText="Pin Code" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="220.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updMobileNumber1" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Primary Mobile Number" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="updMobileNumber2" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Alternate Mobile Number" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <CheckBox fx:id="updWedding" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="120.0" layoutY="384.0" lineSpacing="10.0" mnemonicParsing="false" text="Wedding" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="380.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updMehandi" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="120.0" layoutY="424.0" lineSpacing="10.0" mnemonicParsing="false" text="Mehandi" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="420.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updReception" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="122.0" layoutY="380.0" lineSpacing="10.0" mnemonicParsing="false" text="Reception" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="460.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updAcRequired" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="110.0" layoutY="505.0" lineSpacing="10.0" mnemonicParsing="false" text="A/C Required" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="500.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updIshaHall" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="527.0" layoutY="380.0" lineSpacing="10.0" mnemonicParsing="false" text="Isha Hall - A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="380.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updNiceHall" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="529.0" layoutY="420.0" lineSpacing="10.0" mnemonicParsing="false" text="Nica Hall - A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="420.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="updAdditionalAC" contentDisplay="CENTER" graphicTextGap="20.0" layoutX="529.0" layoutY="460.0" lineSpacing="10.0" mnemonicParsing="false" text="Additional A/C" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="460.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <JFXDatePicker fx:id="eventDate1" defaultColor="#3a84c3" layoutX="500.0" layoutY="34.0" pickOnBounds="false" promptText="Event Date" AnchorPane.topAnchor="30.0">
+                                       <effect>
+                                          <Glow />
+                                       </effect>
+                                    </JFXDatePicker>
+                                    <JFXButton fx:id="updBtnBook" layoutX="900.0" layoutY="489.0" onAction="#bookEventInUpdate" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Book" />
+                                    <JFXButton fx:id="btnUpdate" layoutX="981.0" layoutY="489.0" onAction="#updateEvent" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: #3a84c3;" styleClass="book-button" text="Update" />
+                                    <JFXButton fx:id="updBtnReset" layoutX="820.0" layoutY="489.0" onAction="#resetEventDetailsInUpdate" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
+                                    <Pane layoutX="878.0" layoutY="106.0" prefHeight="212.0" prefWidth="204.0" style="-fx-border-color: blue; -fx-border-width: 3;">
+                                       <children>
+                                          <Label fx:id="totalAmount1" layoutX="60.0" layoutY="99.0" text="0.00">
+                                             <font>
+                                                <Font size="48.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblEventCategory1" alignment="CENTER" layoutX="42.0" layoutY="26.0" prefHeight="17.0" prefWidth="124.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <JFXTextField fx:id="updBookingId" layoutX="113.0" layoutY="31.0" onAction="#onChangeBookingID" prefHeight="25.0" prefWidth="240.0" promptText="Booking ID" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="27.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </Tab>
                      </tabs>
                   </JFXTabPane>

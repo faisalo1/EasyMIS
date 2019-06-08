@@ -16,4 +16,9 @@ public class QueryConstants {
             + "where e.eventDate = :eventDate and e.mehandiSelected = true "
             + "and e.bookingStatus = "
             + "easymis.models.entity.enumeration.BookingStatus.BOOKED";
+    
+    public static final String FETCH_RECEPTION_EVENT_FOR_DATE = "SELECT e from EventDetails e "
+            + "where e.eventDate = :eventDate and e.receptionSelected = true "
+            + "and e.bookingStatus = "
+            + "easymis.models.entity.enumeration.BookingStatus.BOOKED";
 }

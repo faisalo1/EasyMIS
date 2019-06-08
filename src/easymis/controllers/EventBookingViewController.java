@@ -1,5 +1,6 @@
 package easymis.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import easymis.controllers.assembler.EventDetailsAssembler;
@@ -85,12 +86,12 @@ public class EventBookingViewController implements Initializable {
     @FXML
     private TableColumn<EventDetailsViewObject, String> col_eventType;
     @FXML
-    private TableColumn<EventDetailsViewObject, BookingType> col_bookingType;
+    private TableColumn<EventDetailsViewObject, BookingType> col_bookingId;
     @FXML
     private TableColumn<EventDetailsViewObject, Date> col_BookingDate;
     @FXML
     private TableView<EventDetailsViewObject> eventTable;
-    
+
     ObservableList<EventDetailsViewObject> observableList = FXCollections.observableArrayList();
     @FXML
     private TableColumn<EventDetailsViewObject, EventCategory> col_EventCategory;
@@ -100,6 +101,62 @@ public class EventBookingViewController implements Initializable {
     private JFXTextField mobileNumber1;
     @FXML
     private JFXTextField mobileNumber2;
+    @FXML
+    private JFXButton btnBlock;
+    @FXML
+    private JFXButton btnBook;
+    @FXML
+    private JFXButton btnReset;
+    @FXML
+    private Tab panelTabAddNew1;
+    @FXML
+    private JFXTextField updFirstName;
+    @FXML
+    private JFXTextField updLastName;
+    @FXML
+    private JFXTextField updAddressLine1;
+    @FXML
+    private JFXTextField updAddressLine2;
+    @FXML
+    private JFXTextField updAddressLine3;
+    @FXML
+    private JFXTextField updDistrict;
+    @FXML
+    private JFXTextField updState;
+    @FXML
+    private JFXTextField updPinCode;
+    @FXML
+    private JFXTextField updMobileNumber1;
+    @FXML
+    private JFXTextField updMobileNumber2;
+    @FXML
+    private CheckBox updWedding;
+    @FXML
+    private CheckBox updMehandi;
+    @FXML
+    private CheckBox updReception;
+    @FXML
+    private CheckBox updAcRequired;
+    @FXML
+    private CheckBox updIshaHall;
+    @FXML
+    private CheckBox updNiceHall;
+    @FXML
+    private CheckBox updAdditionalAC;
+    @FXML
+    private JFXDatePicker eventDate1;
+    @FXML
+    private JFXButton updBtnBook;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private JFXButton updBtnReset;
+    @FXML
+    private Label totalAmount1;
+    @FXML
+    private Label lblEventCategory1;
+    @FXML
+    private JFXTextField updBookingId;
 
     /**
      * Initializes the controller class.
@@ -110,7 +167,7 @@ public class EventBookingViewController implements Initializable {
         col_fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         col_BookingStatus.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
         col_eventType.setCellValueFactory(new PropertyValueFactory<>("eventType"));
-        col_bookingType.setCellValueFactory(new PropertyValueFactory<>("bookingType"));
+        col_bookingId.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         col_BookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         col_EventCategory.setCellValueFactory(new PropertyValueFactory<>("eventCategory"));
     }
@@ -160,6 +217,9 @@ public class EventBookingViewController implements Initializable {
             TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
             AlertHelper.showMessage(status);
             lblEventCategory.setText(eventDetail.getEventCategory().toString());
+            if (status.isSuccess()) {
+                disableAllFields(true);
+            }
         }
     }
 
@@ -174,8 +234,9 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setAddressLine3(addressLine3.getText());
         eventDetails.setDistrict(district.getText());
         eventDetails.setState(state.getText());
-        if(pinCode.getText() != null && !"".equals(pinCode.getText()))
+        if (pinCode.getText() != null && !"".equals(pinCode.getText())) {
             eventDetails.setPinCode(Integer.valueOf(pinCode.getText()));
+        }
         eventDetails.setWeddingSelected(wedding.isSelected());
         eventDetails.setMehandiSelected(mehandi.isSelected());
         eventDetails.setReceptionSelected(reception.isSelected());
@@ -204,7 +265,7 @@ public class EventBookingViewController implements Initializable {
             errorMessage.append(" Address Line 1,");
             isValid = false;
         }
-        if(mobileNumber1.getText() == null|| "".equals(addressLine1.getText())){
+        if (mobileNumber1.getText() == null || "".equals(addressLine1.getText())) {
             errorMessage.append(" Mobile Number,");
             isValid = false;
         }
@@ -221,13 +282,13 @@ public class EventBookingViewController implements Initializable {
 
     @FXML
     private void onAddNewTabSelection(Event event) {
-        
+
     }
 
     @FXML
     private void onListTabSelection(Event event) {
-        if(event != null){
-            List <EventDetails> eventDetails = EventRepository.getUniqueInstance().fetchAllEvents();
+        if (event != null) {
+            List<EventDetails> eventDetails = EventRepository.getUniqueInstance().fetchAllEvents();
             EventDetailsAssembler assembler = new EventDetailsAssembler();
             observableList.clear();
             eventDetails.stream().forEach((eventDetail) -> {
@@ -238,7 +299,7 @@ public class EventBookingViewController implements Initializable {
     }
 
     private EventTypeDetail buildEventCategoryDetail() {
-        EventTypeDetail eventCategoryDetail =new EventTypeDetail();
+        EventTypeDetail eventCategoryDetail = new EventTypeDetail();
         eventCategoryDetail.setAcSelected(acRequired.isSelected());
         eventCategoryDetail.setAdditionalACSelected(additionalAC.isSelected());
         eventCategoryDetail.setIshaSelected(ishaHall.isSelected());
@@ -247,5 +308,71 @@ public class EventBookingViewController implements Initializable {
         eventCategoryDetail.setReceptionSelected(reception.isSelected());
         eventCategoryDetail.setWeddingSelected(wedding.isSelected());
         return eventCategoryDetail;
+    }
+
+    @FXML
+    private void resetEventDetails(ActionEvent event) {
+        disableAllFields(false);
+        clearFields();
+    }
+
+    private void disableAllFields(boolean flag) {
+        firstName.setDisable(flag);
+        lastName.setDisable(flag);
+        addressLine1.setDisable(flag);
+        addressLine2.setDisable(flag);
+        addressLine3.setDisable(flag);
+        district.setDisable(flag);
+        state.setDisable(flag);
+        pinCode.setDisable(flag);
+        wedding.setDisable(flag);
+        mehandi.setDisable(flag);
+        reception.setDisable(flag);
+        acRequired.setDisable(flag);
+        ishaHall.setDisable(flag);
+        niceHall.setDisable(flag);
+        additionalAC.setDisable(flag);
+        eventDate.setDisable(flag);
+        btnBlock.setDisable(flag);
+        btnBook.setDisable(flag);
+        mobileNumber1.setDisable(flag);
+        mobileNumber2.setDisable(flag);        
+    }
+    
+    private void clearFields(){
+        firstName.clear();
+        lastName.clear();
+        addressLine1.clear();
+        addressLine2.clear();
+        addressLine3.clear();
+        district.clear();
+        state.clear();
+        pinCode.clear();
+        wedding.setSelected(false);
+        mehandi.setSelected(false);
+        reception.setSelected(false);
+        acRequired.setSelected(false);
+        ishaHall.setSelected(false);
+        niceHall.setSelected(false);
+        additionalAC.setSelected(false);
+        eventDate.setValue(null);
+        mobileNumber1.clear();
+        mobileNumber2.clear(); 
+    }
+
+    @FXML
+    private void bookEventInUpdate(ActionEvent event) {
+    }
+
+    @FXML
+    private void updateEvent(ActionEvent event) {
+    }
+
+    @FXML
+    private void resetEventDetailsInUpdate(ActionEvent event) {
+    }
+
+    @FXML
+    private void onChangeBookingID(ActionEvent event) {
     }
 }

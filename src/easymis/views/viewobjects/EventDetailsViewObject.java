@@ -1,7 +1,6 @@
 package easymis.views.viewobjects;
 
 import easymis.models.entity.enumeration.BookingStatus;
-import easymis.models.entity.enumeration.BookingType;
 import easymis.models.entity.enumeration.EventCategory;
 import java.sql.Date;
 
@@ -19,18 +18,18 @@ public class EventDetailsViewObject {
     
     private String eventType;
     
-    private BookingType bookingType;
+    private String bookingId;
     
     private Date bookingDate;
     
     private EventCategory eventCategory;
 
-    public EventDetailsViewObject(Date eventDate, String fullName, BookingStatus bookingStatus, String eventType, BookingType bookingType, Date bookingDate, EventCategory eventCategory) {
+    public EventDetailsViewObject(Date eventDate, String fullName, BookingStatus bookingStatus, String eventType, String bookingId, Date bookingDate, EventCategory eventCategory) {
         this.eventDate = eventDate;
         this.fullName = fullName;
         this.bookingStatus = bookingStatus;
         this.eventType = eventType;
-        this.bookingType = bookingType;
+        this.bookingId = bookingId;
         this.bookingDate = bookingDate;
         this.eventCategory = eventCategory;
     }
@@ -51,8 +50,8 @@ public class EventDetailsViewObject {
         return eventType;
     }
 
-    public BookingType getBookingType() {
-        return bookingType;
+    public String getBookingId() {
+        return  bookingId;
     }
 
     public Date getBookingDate() {
