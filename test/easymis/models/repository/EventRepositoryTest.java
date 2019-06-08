@@ -3,7 +3,6 @@ package easymis.models.repository;
 import easymis.models.entity.EventDetails;
 import easymis.models.entity.TransactionStatus;
 import easymis.models.entity.enumeration.BookingStatus;
-import easymis.models.entity.enumeration.BookingType;
 import easymis.utils.DateHelper;
 import easymis.utils.IDateUtils;
 import java.io.FileInputStream;
@@ -84,7 +83,6 @@ public class EventRepositoryTest {
     public void testCreate() {
         System.out.println("create");
         EventDetails eventDetails = getEventDetails();
-        eventDetails.setBookingType(BookingType.BOOKED);
         eventDetails.setBookingStatus(BookingStatus.BOOKED);
         EventRepository instance = EventRepository.getUniqueInstance();
         TransactionStatus expResult = null;
@@ -143,7 +141,7 @@ public class EventRepositoryTest {
         eventDetails.setEventDate(getEventDate());
         eventDetails.setFirstName(properties.getProperty("firstName"));
         eventDetails.setAddressLine1(properties.getProperty("addressLine1"));
-        eventDetails.setMobileNumber1(properties.getProperty("mobileNumber1"));
+        eventDetails.setPrimaryMobile(properties.getProperty("mobileNumber1"));
         eventDetails.setWeddingSelected(Boolean.valueOf(properties.getProperty("weddingSelected")));
         eventDetails.setMehandiSelected(Boolean.valueOf(properties.getProperty("mehandiSelected")));
         eventDetails.setReceptionSelected(Boolean.valueOf(properties.getProperty("receptionSelected")));

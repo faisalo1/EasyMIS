@@ -2,14 +2,6 @@ package easymis.models.entity.utils;
 
 import easymis.models.entity.EventTypeDetail;
 import easymis.models.entity.enumeration.EventCategory;
-import easymis.models.repository.EventRepositoryTest;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -23,21 +15,8 @@ import org.junit.Test;
  */
 public class EventCategoryUtilsTest {
     
-    private Properties properties;
-    
+  
     public EventCategoryUtilsTest() {
-        try {
-            if(properties == null){
-            InputStream propertiesFileStream = new FileInputStream("C:\\Users\\RashidKP\\Documents\\NetBeansProjects\\EasyMIS\\test\\easymis\\models\\repository\\EventRepositoryTest.properties");
-            properties = new Properties();
-            properties.load(propertiesFileStream);
-            }
-        }catch (FileNotFoundException ex) {
-            Logger.getLogger(EventRepositoryTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex) {
-                Logger.getLogger(EventRepositoryTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     @BeforeClass

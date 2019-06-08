@@ -1,7 +1,6 @@
 package easymis.models.entity;
 
 import easymis.models.entity.enumeration.BookingStatus;
-import easymis.models.entity.enumeration.BookingType;
 import easymis.models.entity.enumeration.EventCategory;
 import java.sql.Date;
 import javax.persistence.Column;
@@ -88,11 +87,11 @@ public class EventDetails extends DomainObject {
     @Column(name = "EVENT_CATEGORY")
     private EventCategory eventCategory;
 
-    @Column(name = "MOBILE_NUMBER_1")
-    private String mobileNumber1;
+    @Column(name = "PRIMARY_MOBILE")
+    private String primaryMobile;
 
-    @Column(name = "MOBILE_NUMBER_2")
-    private String mobileNumber2;
+    @Column(name = "ALTERNATE_MOBILE")
+    private String alternateMobile;
 
     @ObjectTypeConverter(
             name = "bookingStatusConverter", objectType = BookingStatus.class, dataType = String.class, conversionValues = {
@@ -102,15 +101,6 @@ public class EventDetails extends DomainObject {
     @Convert("bookingStatusConverter")
     @Column(name = "BOOKING_STATUS")
     private BookingStatus bookingStatus;
-
-    @ObjectTypeConverter(
-            name = "bookingTypeConverter", objectType = BookingType.class, dataType = String.class, conversionValues = {
-                @ConversionValue(objectValue = "BOOKED", dataValue = "BOOKED"),
-                @ConversionValue(objectValue = "BLOCKED", dataValue = "BLOCKED")}
-    )
-    @Convert("bookingTypeConverter")
-    @Column(name = "BOOKING_TYPE")
-    private BookingType bookingType;
 
     @Column(name = "CREATED_DATE")
     private Date createdDate;
@@ -254,20 +244,20 @@ public class EventDetails extends DomainObject {
         this.eventCategory = eventCategory;
     }
 
-    public String getMobileNumber1() {
-        return mobileNumber1;
+    public String getPrimaryMobile() {
+        return primaryMobile;
     }
 
-    public void setMobileNumber1(String mobileNumber1) {
-        this.mobileNumber1 = mobileNumber1;
+    public void setPrimaryMobile(String primaryMobile) {
+        this.primaryMobile = primaryMobile;
     }
 
-    public String getMobileNumber2() {
-        return mobileNumber2;
+    public String getAlternateMobile() {
+        return alternateMobile;
     }
 
-    public void setMobileNumber2(String mobileNumber2) {
-        this.mobileNumber2 = mobileNumber2;
+    public void setAlternateMobile(String alternateMobile) {
+        this.alternateMobile = alternateMobile;
     }
 
     public BookingStatus getBookingStatus() {
@@ -276,14 +266,6 @@ public class EventDetails extends DomainObject {
 
     public void setBookingStatus(BookingStatus bookingStatus) {
         this.bookingStatus = bookingStatus;
-    }
-
-    public BookingType getBookingType() {
-        return bookingType;
-    }
-
-    public void setBookingType(BookingType bookingType) {
-        this.bookingType = bookingType;
     }
 
     public Date getCreatedDate() {
@@ -323,9 +305,9 @@ public class EventDetails extends DomainObject {
                 + mehandiSelected + ", acSelectedSelected=" + acSelected
                 + ", acAddSelected=" + additionalACSelected + ", ishaSelected="
                 + ishaSelected + ", nicaSelected=" + nicaSelected
-                + ", eventCategory=" + eventCategory + ", mobileNumber1=" + mobileNumber1
-                + ", mobileNumber2=" + mobileNumber2 + ", eventDateStatus="
-                + bookingStatus + ", bookingType=" + bookingType + ", createdDate="
+                + ", eventCategory=" + eventCategory + ", mobileNumber1=" + primaryMobile
+                + ", mobileNumber2=" + alternateMobile + ", eventDateStatus="
+                + bookingStatus + ", createdDate="
                 + createdDate + ", lastUpdatedDate=" + lastUpdatedDate + '}';
     }
 }
