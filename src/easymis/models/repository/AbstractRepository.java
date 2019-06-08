@@ -59,6 +59,24 @@ public class AbstractRepository {
         }
         return resultList;
     }
+    
+    public TransactionStatus update(Object object) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("company-provider");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TransactionStatus status = null;
+        try {
+            em.persist(object);
+            em.getTransaction().commit();
+            status = fillTransactionStatus(null);
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            status = fillTransactionStatus(e);
+        } finally {
+            em.close();
+        }
+        return status;
+    }
 
     private TransactionStatus fillTransactionStatus(Exception exception) {
         TransactionStatus status = new TransactionStatus();

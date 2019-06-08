@@ -68,12 +68,12 @@
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="mobileNumber1" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 1" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
+                                    <JFXTextField fx:id="primaryMobileNumber" layoutX="120.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Primary Mobile Number" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="270.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="mobileNumber2" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Mobile Number 2" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
+                                    <JFXTextField fx:id="alternateMobileNumber" layoutX="511.0" layoutY="230.0" prefHeight="25.0" prefWidth="240.0" promptText="Alternate Mobile Number" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="270.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -118,9 +118,9 @@
                                           <Glow />
                                        </effect>
                                     </JFXDatePicker>
-                                    <JFXButton buttonType="RAISED" layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #ffd700;" styleClass="block-button" text="Block" />
-                                    <JFXButton buttonType="RAISED" layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #008000;" styleClass="book-button" text="Book" />
-                                    <JFXButton buttonType="RAISED" layoutX="820.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
+                                    <JFXButton fx:id="btnBlock" buttonType="RAISED" layoutX="900.0" layoutY="489.0" onAction="#blockEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #ffd700;" styleClass="block-button" text="Block" />
+                                    <JFXButton fx:id="btnBook" buttonType="RAISED" layoutX="981.0" layoutY="489.0" onAction="#bookEvent" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #008000;" styleClass="book-button" text="Book" />
+                                    <JFXButton fx:id="btnReset" buttonType="RAISED" layoutX="820.0" layoutY="489.0" onAction="#resetEventDetails" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: #3a84c3;" styleClass="block-button" text="Reset" />
                                     <Pane layoutX="878.0" layoutY="106.0" prefHeight="212.0" prefWidth="204.0" style="-fx-border-color: GREEN; -fx-border-width: 3;">
                                        <children>
                                           <Label fx:id="totalAmount" layoutX="60.0" layoutY="99.0" text="0.00">
@@ -145,13 +145,13 @@
                                  <children>
                                     <TableView fx:id="eventTable" prefHeight="563.0" prefWidth="533.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                                       <columns>
-                                        <TableColumn fx:id="col_EventDate" prefWidth="150.0" text="Event Date" />
-                                        <TableColumn fx:id="col_fullName" prefWidth="126.0" text="Full Name" />
-                                          <TableColumn fx:id="col_BookingStatus" prefWidth="146.0" text="Booking Status" />
-                                          <TableColumn fx:id="col_eventType" prefWidth="305.0" text="Event Type" />
-                                          <TableColumn fx:id="col_bookingType" prefWidth="149.0" text="Booking Type" />
-                                          <TableColumn fx:id="col_BookingDate" prefWidth="138.0" text="Booking Date" />
-                                          <TableColumn fx:id="col_EventCategory" prefWidth="141.0" text="Event Category" />
+                                          <TableColumn fx:id="col_bookingId" prefWidth="99.0" text="Booking ID" />
+                                        <TableColumn fx:id="col_EventDate" prefWidth="121.0" text="Event Date" />
+                                        <TableColumn fx:id="col_fullName" prefWidth="172.0" text="Full Name" />
+                                          <TableColumn fx:id="col_BookingStatus" prefWidth="123.0" text="Booking Status" />
+                                          <TableColumn fx:id="col_eventType" prefWidth="412.0" text="Event Type" />
+                                          <TableColumn fx:id="col_BookingDate" prefWidth="126.0" text="Booking Date" />
+                                          <TableColumn fx:id="col_EventCategory" prefWidth="102.0" text="Event Category" />
                                       </columns>
                                     </TableView>
                                  </children>

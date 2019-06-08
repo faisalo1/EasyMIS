@@ -98,9 +98,9 @@ public class EventBookingViewController implements Initializable {
     @FXML
     private Label lblEventCategory;
     @FXML
-    private JFXTextField mobileNumber1;
+    private JFXTextField primaryMobileNumber;
     @FXML
-    private JFXTextField mobileNumber2;
+    private JFXTextField alternateMobileNumber;
     @FXML
     private JFXButton btnBlock;
     @FXML
@@ -207,13 +207,13 @@ public class EventBookingViewController implements Initializable {
     @FXML
     private void bookEvent(ActionEvent event) {
         if (event != null) {
-            manageEvent(BookingType.BOOKED);
+            manageEvent(BookingStatus.BOOKED);
         }
     }
 
-    public void manageEvent(BookingType bookingType) {
+    public void manageEvent(BookingStatus bookingStatus) {
         if (validateMandatory()) {
-            EventDetails eventDetail = getEventDetails(bookingType);
+            EventDetails eventDetail = getEventDetails(bookingStatus);
             TransactionStatus status = EventRepository.getUniqueInstance().create(eventDetail);
             AlertHelper.showMessage(status);
             lblEventCategory.setText(eventDetail.getEventCategory().toString());
@@ -223,7 +223,7 @@ public class EventBookingViewController implements Initializable {
         }
     }
 
-    private EventDetails getEventDetails(BookingType bookingType) {
+    private EventDetails getEventDetails(BookingStatus bookingStatus) {
         EventDetails eventDetails = new EventDetails();
         java.sql.Date eventDateValue = java.sql.Date.valueOf(eventDate.getValue());
         eventDetails.setEventDate(eventDateValue);
@@ -244,8 +244,10 @@ public class EventBookingViewController implements Initializable {
         eventDetails.setNicaSelected(niceHall.isSelected());
         eventDetails.setAcSelected(acRequired.isSelected());
         eventDetails.setAdditionalACSelected(additionalAC.isSelected());
-        eventDetails.setBookingStatus(BookingStatus.BOOKED);
+        eventDetails.setBookingStatus(bookingStatus);
         eventDetails.setEventCategory(EventCategoryUtils.getEventCategory(buildEventCategoryDetail()));
+        eventDetails.setPrimaryMobile(primaryMobileNumber.getText());
+        eventDetails.setAlternateMobile(alternateMobileNumber.getText());
         eventDetails.setCreatedDate(DateHelper.getToday());
         return eventDetails;
     }
@@ -265,7 +267,7 @@ public class EventBookingViewController implements Initializable {
             errorMessage.append(" Address Line 1,");
             isValid = false;
         }
-        if (mobileNumber1.getText() == null || "".equals(addressLine1.getText())) {
+        if (primaryMobileNumber.getText() == null || "".equals(addressLine1.getText())) {
             errorMessage.append(" Mobile Number,");
             isValid = false;
         }
@@ -335,8 +337,8 @@ public class EventBookingViewController implements Initializable {
         eventDate.setDisable(flag);
         btnBlock.setDisable(flag);
         btnBook.setDisable(flag);
-        mobileNumber1.setDisable(flag);
-        mobileNumber2.setDisable(flag);        
+        primaryMobileNumber.setDisable(flag);
+        alternateMobileNumber.setDisable(flag);        
     }
     
     private void clearFields(){
@@ -356,8 +358,8 @@ public class EventBookingViewController implements Initializable {
         niceHall.setSelected(false);
         additionalAC.setSelected(false);
         eventDate.setValue(null);
-        mobileNumber1.clear();
-        mobileNumber2.clear(); 
+        primaryMobileNumber.clear();
+        alternateMobileNumber.clear(); 
     }
 
     @FXML
