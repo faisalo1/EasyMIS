@@ -60,13 +60,13 @@ public class AbstractRepository {
         return resultList;
     }
     
-    public TransactionStatus update(Object object) {
+    public TransactionStatus merge(Object object) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("company-provider");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         TransactionStatus status = null;
         try {
-            em.persist(object);
+            em.merge(object);
             em.getTransaction().commit();
             status = fillTransactionStatus(null);
         } catch (Exception e) {

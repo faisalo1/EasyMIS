@@ -54,7 +54,7 @@ public class EventDetails extends DomainObject {
     private String state;
 
     @Column(name = "PIN")
-    private Integer pinCode;
+    private String pinCode;
 
     @Column(name = "IS_WEDDING_SELECTED")
     private boolean weddingSelected;
@@ -96,7 +96,9 @@ public class EventDetails extends DomainObject {
     @ObjectTypeConverter(
             name = "bookingStatusConverter", objectType = BookingStatus.class, dataType = String.class, conversionValues = {
                 @ConversionValue(objectValue = "BOOKED", dataValue = "BOOKED"),
-                @ConversionValue(objectValue = "CANCELLED", dataValue = "CANCELLED")}
+                @ConversionValue(objectValue = "BLOCKED", dataValue = "BLOCKED"),
+                @ConversionValue(objectValue = "BOOKING_CANCELLED", dataValue = "BOOKING_CANCELLED"),  
+                @ConversionValue(objectValue = "BLOCKING_CANCELLED", dataValue = "BLOCKING_CANCELLED")}
     )
     @Convert("bookingStatusConverter")
     @Column(name = "BOOKING_STATUS")
@@ -180,11 +182,11 @@ public class EventDetails extends DomainObject {
         this.state = state;
     }
 
-    public Integer getPinCode() {
+    public String getPinCode() {
         return pinCode;
     }
 
-    public void setPinCode(Integer pinCode) {
+    public void setPinCode(String pinCode) {
         this.pinCode = pinCode;
     }
 

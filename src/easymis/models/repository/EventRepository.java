@@ -72,4 +72,29 @@ public class EventRepository extends AbstractRepository {
         List<EventDetails> mehandiEvents = retrieve(QueryConstants.FETCH_RECEPTION_EVENT_FOR_DATE, Collections.singletonList(param), EventDetails.class);
         return mehandiEvents != null && !mehandiEvents.isEmpty() ? mehandiEvents.get(0): null;
     }
+
+    public EventDetails fetchByBookingId(String bookingId) {
+        QueryParams param = new QueryParams();
+        param.setParamName("bookingId");
+        param.setParamValue(bookingId);
+        List<EventDetails> events =retrieve(QueryConstants.FETCH_EVENT_FOR_BOOKING_ID, Collections.singletonList(param), EventDetails.class);
+        return events != null && !events.isEmpty() ? events.get(0) : null;
+    }
+
+    public TransactionStatus update(EventDetails eventDetail, boolean isNewBooking) {
+        if(isNewBooking){
+            EventBookingBusinessPolicy policy = new EventBookingBusinessPolicy();
+        List<ValidationError> validationErrors = policy.validateBooking(eventDetail);
+        if (validationErrors.isEmpty()) {
+            return merge(eventDetail);
+        } else {
+            TransactionStatus status = new TransactionStatus();
+            status.setSuccess(false);
+            status.setValidationErrors(validationErrors);
+            return status;
+        }
+        }else{
+            return merge(eventDetail);
+        }
+    }
 }
