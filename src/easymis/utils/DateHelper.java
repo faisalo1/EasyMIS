@@ -1,6 +1,8 @@
 package easymis.utils;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 /**
  *
@@ -21,10 +23,21 @@ public class DateHelper {
         return dateUtils.getToday();
     }
     public static Date getNextDay(Date currentDate){
-        return new java.sql.Date(currentDate.getTime() + 24*60*60*1000);
+        LocalDate localDate = currentDate.toLocalDate();
+        return java.sql.Date.valueOf(localDate.plusDays(1));
     }
     
     public static Date getPreviousDay(Date currentDate){
-        return new java.sql.Date(currentDate.getTime() - 24*60*60*1000);
+        LocalDate localDate = currentDate.toLocalDate();
+        return java.sql.Date.valueOf(localDate.minusDays(1));
     }
+    
+    public static Date getFirstDayOfTheYear(){
+        
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        LocalDate myDate = LocalDate.of(year, 1, 1);
+        Date date = Date.valueOf(myDate);
+       return date;
+    }
+    
     }

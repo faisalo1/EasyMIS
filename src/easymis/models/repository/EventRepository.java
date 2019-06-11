@@ -48,7 +48,7 @@ public class EventRepository extends AbstractRepository {
         return retrieve(QueryConstants.FETCH_ALL_EVENTS, null, EventDetails.class);
     }
     
-    public List<EventDetails> fetchEventsOnDate(Date eventDate){
+    public List<EventDetails> fetchByEventDate(Date eventDate){
         QueryParams param = new QueryParams();
         param.setParamName("eventDate");
         param.setParamDateValue(eventDate);

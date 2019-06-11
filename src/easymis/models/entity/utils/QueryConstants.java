@@ -1,6 +1,4 @@
 package easymis.models.entity.utils;
-
-
 /**
  *
  * @author RashidKP
@@ -24,4 +22,7 @@ public class QueryConstants {
     
     public static final String FETCH_EVENT_FOR_BOOKING_ID = "SELECT e from EventDetails e "
             + "where e.bookingId = :bookingId";
+    
+    public static final String FETCH_ALL_EVENTS_OF_CURRENT_YEAR = "SELECT e from EventDetails e "
+            + "where e.eventDate >= :fistDateOfYear";
 }

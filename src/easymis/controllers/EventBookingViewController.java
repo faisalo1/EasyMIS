@@ -606,9 +606,11 @@ public class EventBookingViewController implements Initializable {
 
     @FXML
     private void onAddEventTabSelection(Event event) {
+        
     }
 
     @FXML
     private void onUpdateEventTabSelection(Event event) {
+        
     }
 }

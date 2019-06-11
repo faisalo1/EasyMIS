@@ -6,7 +6,7 @@
 package easymis.utils;
 
 import java.sql.Date;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,7 +16,8 @@ public class DateUtils implements IDateUtils{
 
     @Override
     public Date getToday() {
-        return new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        LocalDate localDate = LocalDate.now();
+        return java.sql.Date.valueOf(localDate);
     }
     
 }

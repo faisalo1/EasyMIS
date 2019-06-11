@@ -28,7 +28,23 @@ public class EventDetailsAssembler {
 
     private String resolveEventType(EventDetails eventDetails) {
         String eventType = "";
-        List<EventType> eventTypes = new ArrayList<EventType>();
+        List<EventType> eventTypes = getEventTypeEnums(eventDetails);
+        StringBuilder eventTypeBuilder = new StringBuilder();
+        if(!eventTypes.isEmpty()){
+            for(int i=0; i<eventTypes.size(); i++){
+                eventTypeBuilder.append(eventTypes.get(i));
+                if(i != eventTypes.size()-1){
+                    eventTypeBuilder.append(", ");
+                }
+            }
+            eventType = eventTypeBuilder.toString();
+        }
+        return eventType;
+        
+    }
+
+    public List<EventType> getEventTypeEnums(EventDetails eventDetails) {
+        List<EventType> eventTypes = new ArrayList<>();
         if(eventDetails.isWeddingSelected()){
             eventTypes.add(EventType.WEDDING);
         }
@@ -50,17 +66,7 @@ public class EventDetailsAssembler {
         if(eventDetails.isAdditionalACSelected()){
             eventTypes.add(EventType.ADDITIONAL_AC);
         }
-        StringBuilder eventTypeBuilder = new StringBuilder();
-        if(!eventTypes.isEmpty()){
-            for(int i=0; i<eventTypes.size(); i++){
-                eventTypeBuilder.append(eventTypes.get(i));
-                if(i != eventTypes.size()-1){
-                    eventTypeBuilder.append(", ");
-                }
-            }
-            eventType = eventTypeBuilder.toString();
-        }
-        return eventType;
-        
+        return eventTypes;
     }
+   
 }

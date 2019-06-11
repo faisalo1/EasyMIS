@@ -107,7 +107,7 @@ public class EventRepositoryTest {
     }
 
     /**
-     * Test of fetchEventsOnDate method, of class EventRepository.
+     * Test of fetchByEventDate method, of class EventRepository.
      */
     @Test
     public void testFetchEventsOnDate() {
@@ -115,7 +115,7 @@ public class EventRepositoryTest {
         Date eventDate = null;
         EventRepository instance = null;
         List<EventDetails> expResult = null;
-        List<EventDetails> result = instance.fetchEventsOnDate(eventDate);
+        List<EventDetails> result = instance.fetchByEventDate(eventDate);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

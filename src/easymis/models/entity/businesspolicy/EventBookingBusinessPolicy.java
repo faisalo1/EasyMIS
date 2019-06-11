@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class EventBookingBusinessPolicy {
 
-    List<ValidationError> validationErrors = new ArrayList<ValidationError>();
+    List<ValidationError> validationErrors = new ArrayList<>();
 
     public List<ValidationError> validateBooking(EventDetails eventDetails) {
 
@@ -34,8 +34,7 @@ public class EventBookingBusinessPolicy {
     }
 
     private void validateDateAvailability(EventDetails eventDetails) {
-        List<EventDetails> existingEvents = EventRepository.getUniqueInstance().
-                fetchEventsOnDate(eventDetails.getEventDate());
+        List<EventDetails> existingEvents = EventRepository.getUniqueInstance().fetchByEventDate(eventDetails.getEventDate());
         List<EventType> eventTypesOnCurrentBooking = populateEventListExceptMehandi(Collections.singletonList(eventDetails));
         if (existingEvents != null && !existingEvents.isEmpty()) {
             List<EventType> existingEventTypes = populateEventListExceptMehandi(existingEvents);
