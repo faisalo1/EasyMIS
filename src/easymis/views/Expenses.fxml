@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -36,7 +39,37 @@
                               </AnchorPane>
                           </content>
                         </Tab>
-                        <Tab fx:id="panelTabUpdateEvent" onSelectionChanged="#onUpdateEventTabSelection" text="Expenses" />
+                        <Tab fx:id="panelTabUpdateEvent" onSelectionChanged="#onUpdateEventTabSelection" text="Expenses">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children />
+                                 <children>
+                                    <Text layoutX="55.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField floatText="Expenses" layoutX="202.0" layoutY="58.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
+                                    <TextField floatText="Cleaning" layoutX="212.0" layoutY="105.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="90.0" />
+                                    <TextField floatText="Daily Wages" layoutX="210.0" layoutY="138.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="130.0" />
+                                    <TextField floatText="Security Day/Night" layoutX="220.0" layoutY="194.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="170.0" />
+                                    <TextField floatText="DG/Diesel" layoutX="230.0" layoutY="237.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="210.0" />
+                                    <TextField floatText="Electricity" layoutX="257.0" layoutY="286.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="250.0" />
+                                    <TextField floatText="Wedding Gift" layoutX="257.0" layoutY="337.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="290.0" />
+                                    <TextField floatText="GST/Other TAX" layoutX="40.0" layoutY="395.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="330.0" />
+                                    <TextField floatText="Other" layoutX="40.0" layoutY="444.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="370.0" />
+                                    <TextField floatText="Event Date" layoutX="252.0" layoutY="50.0" AnchorPane.topAnchor="50.0" />
+                                    <TextField floatText="Total Revenue" layoutX="423.0" layoutY="68.0" AnchorPane.topAnchor="50.0" />
+                                    <TextField floatText="Total Expense" layoutX="423.0" layoutY="90.0" AnchorPane.topAnchor="90.0" />
+                                    <TextField floatText="Balance" layoutX="423.0" layoutY="148.0" AnchorPane.topAnchor="130.0" />
+                                    <JFXButton contentDisplay="BOTTOM" layoutX="252.0" layoutY="114.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: #3A84C3;" text="Calculate" AnchorPane.topAnchor="90.0" />
+                                    <JFXButton layoutX="254.0" layoutY="146.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: #3A84C3;" text="Edit" AnchorPane.topAnchor="130.0" />
+                                    <FontAwesomeIconView glyphName="INR" layoutX="269.0" layoutY="111.0" size="20" />
+                                 </children></AnchorPane>
+                           </content></Tab>
                      </tabs>
                   </JFXTabPane>
                </children>
